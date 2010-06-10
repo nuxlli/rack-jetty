@@ -62,7 +62,7 @@ module RackJetty
         
         buffer = response.get_output_stream
         output.each do |s|
-          buffer.print(s)
+          buffer.write(s.to_java_bytes)
         end
       ensure
         request.set_handled(true)
