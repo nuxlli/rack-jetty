@@ -22,7 +22,7 @@ module RackJetty
         env = DefaultRackEnv.merge({
           'rack.input' => Rack::RewindableInput.new(JavaInput.new(request.get_input_stream)),
           'rack.url_scheme' => request.get_scheme,
-          'CONTENT_TYPE' => request.get_content_type.to_s,
+          'CONTENT_TYPE' => request.get_content_type && request.get_content_type.to_s,
           'CONTENT_LENGTH' => request.get_content_length, # some post-processing done below
           'REQUEST_METHOD' => request.get_method || "GET",
           'REQUEST_URI' => request.getRequestURI,
